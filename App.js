@@ -4,9 +4,13 @@ export default function App() {
   return (
     <View style={styles.container}>
       <View>
-        <Text>another view core components!</Text>
+        <Text style={styles.dummyText}>another view core components!</Text>
       </View>
-      <Text>hello world!</Text>
+      <Text
+        style={{ margin: 16, borderWidth: 2, borderColor: "red", padding: 16 }}
+      >
+        hello world!
+      </Text>
       <Button title="Tap me" />
     </View>
   );
@@ -19,4 +23,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
+  dummyText: {
+    margin: 16, borderWidth: 2, borderColor: "red", padding: 16
+  }
 });
