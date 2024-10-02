@@ -1,7 +1,7 @@
 import { useState } from "react";
 import {
   Button,
-  ScrollView,
+  FlatList,
   StyleSheet,
   Text,
   TextInput,
@@ -16,7 +16,7 @@ export default function App() {
   }
 
   function addGoalHandler() {
-    setCourseGoals((preState) => [...preState, enteredGoalText]);
+    setCourseGoals((preState) => [...preState, {text: enteredGoalText, key: Math.random().toString()}]);
   }
 
   return (
@@ -30,15 +30,20 @@ export default function App() {
         <Button title="Add Goal" onPress={addGoalHandler} />
       </View>
       <View style={styles.goalsContainer}>
-        <ScrollView>
-          {courseGoals.map((goal, index) => {
+        <FlatList
+          data={courseGoals}
+          renderItem={(itemData) => {
             return (
-              <View style={styles.goalItem} key={index}>
-                <Text style={styles.goalText}>{goal}</Text>
+              <View style={styles.goalItem}>
+                <Text style={styles.goalText}>{itemData.item.text}</Text>
               </View>
             );
-          })}
-        </ScrollView>
+          }}
+          keyExtractor={(item, index) => {
+            return item.id;
+          }}
+          alwaysBounceVertical={false}
+        />
       </View>
     </View>
   );
