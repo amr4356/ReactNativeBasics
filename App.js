@@ -1,23 +1,22 @@
 import { useState } from "react";
-import { FlatList, StyleSheet,  View } from "react-native";
+import { FlatList, StyleSheet, View } from "react-native";
 
 import GoalItem from "./components/GoalItem";
 import GoalInput from "./components/GoalInput";
 
 export default function App() {
-
   const [courseGoals, setCourseGoals] = useState([]);
 
   function addGoalHandler(enteredGoalText) {
     setCourseGoals((preState) => [
       ...preState,
-      { text: enteredGoalText, key: Math.random().toString() },
+      { text: enteredGoalText, id: Math.random().toString() },
     ]);
   }
 
-  function deleteGoalHandler(id){
-    setCourseGoals((preState)=> {
-      preState.filter(goal => goal.key!==id );
+  function deleteGoalHandler(id) {
+    setCourseGoals((preState) => {
+      return preState.filter((goal) => goal.id !== id);
     });
   }
 
@@ -31,7 +30,13 @@ export default function App() {
         <FlatList
           data={courseGoals}
           renderItem={(itemData) => {
-            return <GoalItem text={itemData.item.text} onDeleteItem={deleteGoalHandler} />;
+            return (
+              <GoalItem
+                id={itemData.item.id}
+                text={itemData.item.text}
+                onDeleteItem={deleteGoalHandler}
+              />
+            );
           }}
           keyExtractor={(item, index) => {
             return item.id;
