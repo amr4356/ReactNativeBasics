@@ -22,10 +22,7 @@ export default function App() {
 
   return (
     <View style={styles.appContainer}>
-      <GoalInput
-        goalInputHandler={goalInputHandler}
-        onAddGoal={addGoalHandler}
-      />
+      <GoalInput onAddGoal={addGoalHandler} />
       <View style={styles.goalsContainer}>
         <FlatList
           data={courseGoals}
