@@ -8,6 +8,7 @@ import {
   Image,
 } from "react-native";
 
+
 function GoalInput(props) {
   const [enteredGoalText, setEnteredGoalText] = useState("");
 
@@ -20,7 +21,7 @@ function GoalInput(props) {
       <View style={styles.inputContainer}>
         <Image
           style={styles.image}
-          source={require("../assets/images/goal.png")}
+          source={require('../assets/images/goal.png')}
         />
         <TextInput
           style={styles.textInput}
@@ -30,21 +31,16 @@ function GoalInput(props) {
         />
         <View style={styles.buttonContainer}>
           <View style={styles.button}>
+            <Button title="Cancel" onPress={props.onEndAddGoal} color='#f31282' />
+          </View>
+          <View style={styles.button}>
             <Button
               title="Add Goal"
               onPress={() => {
                 props.onAddGoal(enteredGoalText);
                 setEnteredGoalText("");
               }}
-            />
-          </View>
-          <View style={styles.button}>
-            <Button
-              title="Cancel"
-              onPress={() => {
-                props.onEndAddGoal();
-                setEnteredGoalText("");
-              }}
+              color='#b180f0'
             />
           </View>
         </View>
@@ -71,9 +67,12 @@ const styles = StyleSheet.create({
   },
   textInput: {
     borderWidth: 1,
-    borderColor: "#cccccc",
+    borderColor: "#e4d0ff",
+    backgroundColor: "#e4d0ff",
+    color: '#120438',
     width: "100%",
-    padding: 8,
+    padding: 16,
+    borderRadius: 6,
   },
   buttonContainer: {
     flexDirection: "row",
